@@ -1,0 +1,26 @@
+<!-- templates/notebook/worksheet_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheets</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Interactive Learning Notebook</h1>
+    </header>
+    <main>
+        <h2>Available Worksheets</h2>
+        <ul>
+            {% for worksheet in worksheets %}
+            <li>
+                <a href="{% url 'note_detail' worksheet.id %}">{{ worksheet.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

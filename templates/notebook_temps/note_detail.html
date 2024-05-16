@@ -1,0 +1,38 @@
+<!-- templates/notebook/note_detail.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Detail</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{{ note.worksheet.title }}</h1>
+    </header>
+    <main>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="handwritten_content">Handwritten Content:</label>
+            <textarea id="handwritten_content" name="handwritten_content">{{ note.handwritten_content }}</textarea>
+            <button type="submit">Submit</button>
+        </form>
+        
+        {% if note.converted_text %}
+        <section>
+            <h2>Converted Text</h2>
+            <p>{{ note.converted_text }}</p>
+        </section>
+        {% endif %}
+        
+        {% if note.gpt_feedback %}
+        <section>
+            <h2>Feedback</h2>
+            <p>{{ note.gpt_feedback }}</p>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>
